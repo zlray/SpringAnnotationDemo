@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="address1" class="SpringBeanAutowire.Address"
+          p:city="北京" p:street="长安街">
+    </bean>
+
+    <bean id="address2" class="SpringBeanAutowire.Address"
+          p:city="上海" p:street="陆家嘴">
+    </bean>
+    <bean id="cara" class="SpringBeanAutowire.Car"
+          p:name="奥迪" p:company="德国">
+    </bean>
+    <bean id="carb" class="SpringBeanAutowire.Car"
+          p:name="奔驰" p:company="英国">
+    </bean>
+    <bean id="person" class="SpringBeanAutowire.Person"
+          p:name="zl" p:address-ref="address1" p:car-ref="cara">
+    </bean>
+    <!--byName 可以同名字自动装配-->
+    <bean id="person11" class="SpringBeanAutowire.Person"
+          p:name="zl" autowire="byName">
+    </bean>
+    <!--byType-->
+    <!--<bean id="person22" class="main.java.SpringBeanAutowire.Person"-->
+    <!--p:name="zl" autowire="byType">-->
+    <!--</bean>-->
+
+    <!--bean配置的继承:使用bean的parent属性-->
+    <bean id="address3" class="SpringBeanAutowire.Address"
+          p:city="北京" p:street="长安街">
+    </bean>
+
+    <bean id="address4" parent="address3"
+          p:city="上海" p:street="陆家嘴">
+    </bean>
+
+    <!--bean模板-->
+    <!--<bean id="addressTemplate" p:city="北京" p:street="长安街" abstract="true">-->
+    <!--</bean>-->
+
+    <bean id="personDepend" class="SpringBeanAutowire.Person"
+          p:name="zl" p:address-ref="address1" depends-on="cara,carb">
+    </bean>
+
+</beans>
