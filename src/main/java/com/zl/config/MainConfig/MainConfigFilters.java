@@ -32,6 +32,6 @@ import org.springframework.context.annotation.*;
 
 // Filter[]  excludeFilters  按照规则排除
 // Filter[]  includeFilters  按照规则只包含
-public class MainConfig {
+public class MainConfigFilters {
 
 }

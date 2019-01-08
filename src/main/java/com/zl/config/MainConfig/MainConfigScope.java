@@ -1,7 +1,6 @@
 package com.zl.config.MainConfig;
 
 import com.zl.config.MyImplent.MacCondition;
-import com.zl.config.MyImplent.WindowsCondition;
 import com.zl.config.dao.PersonDao;
 import org.springframework.context.annotation.*;
 
@@ -17,17 +16,16 @@ import org.springframework.context.annotation.*;
 //自动扫描
 @ComponentScans(value = {@ComponentScan(value = "com.zl.config")})
 @Conditional(MacCondition.class) //当满足这个条件,这个类中配置的所有的Bean注册才能生效
-public class MainConfig3 {
+public class MainConfigScope {
 
-    @Conditional({WindowsCondition.class})
-    @Bean("windows")
-    public PersonDao personDao1(){
-        return new PersonDao("windows");
-    }
-
-    @Conditional({MacCondition.class})
-    @Bean("mac")
-    public PersonDao personDao2(){
-        return new PersonDao("mac");
+    //ConfigurableBeanFactory#SCOPE_PROTOTYPE  多实例
+//ConfigurableBeanFactory#SCOPE_SINGLETON
+    @Scope("prototype")
+//    @Scope("singleton")
+    @Lazy
+    @Bean("PersonDao")
+    public PersonDao personDao() {
+        System.out.println("给容器添加personDao");
+        return new PersonDao("zl");
     }
 }

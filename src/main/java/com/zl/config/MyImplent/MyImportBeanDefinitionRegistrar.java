@@ -21,13 +21,15 @@ public class MyImportBeanDefinitionRegistrar implements ImportBeanDefinitionRegi
      * @param registry BeanDefinitionRegistry的注册类
      */
     @Override
-    public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry) {
-        boolean defination1 = registry.containsBeanDefinition("com.zl.config.ImportBean.Red");
-        boolean defination2 = registry.containsBeanDefinition("com.zl.config.ImportBean.Blue");
+    public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata,
+                                        BeanDefinitionRegistry registry) {
+        //用于判断
+        boolean definition1 = registry.containsBeanDefinition("com.zl.config.ImportBean.Red");
+        boolean definition2 = registry.containsBeanDefinition("com.zl.config.ImportBean.Blue");
 
         //制定Bean的定义信息
         RootBeanDefinition rootBeanDefinition = new RootBeanDefinition(RainBow.class);
-        if (defination1 && defination2){
+        if (definition1 && definition2){
             //指定Bean名,注册一个Bean
             registry.registerBeanDefinition("rainbow",rootBeanDefinition);
         }
